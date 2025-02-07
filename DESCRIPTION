@@ -1,10 +1,16 @@
 Package: CopernicusDownloadeR
 Title: Downloading Environmental Data from Copernicus Marine Service Using R
 Version: 0.0.0.9000
-Authors@R: 
-    person("Eliza", "Fragkopoulou", , "eli_frag@hotmail.com", role = c("aut", "cre"))
+Authors@R:
+    person("Eliza", "Fragkopoulou", email = "eli_frag@hotmail.com", role = c("aut", "cre"))
 Description: Subset and download environmental data from the Copernicus Marine Service <https://data.marine.copernicus.eu/products>. Import data on the physical and biogeochemical state of the ocean are based on two reanalysis datasets: "Global Ocean Physics Reanalysis" and "Global Ocean Biogeochemistry."
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports:
+    reticulate,
+    rmarkdown
+VignetteBuilder: rmarkdown, knitr
+Suggests: 
+    knitr
