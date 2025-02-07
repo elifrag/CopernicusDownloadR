@@ -97,7 +97,7 @@ copernicusData <- extractData(
   variables = "oxygen",
   lon = -9.64671906997131, lat = 36.7143279919028,
   startDate = "2021-01-01", endDate = "2021-01-20",   # select between "1993-01-01" and "2024-10-22"
-  depth = c(0,11),   # select between 0 and 5728 m depth 
+  depth = c(1,11),   # select between 0 and 5728 m depth 
   frequency = "daily",   # select between daily or monthly 
   data_output = "path_to_download_folder" )
   
