@@ -1,0 +1,202 @@
+---
+title: "CopernicusDownloadR_vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{CopernicusDownloadR_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+### Introduction
+
+The `CopernicusDownloadR` package provides a seamless interface between R and the Copernicus Marine Service, simplifying the process of subsetting and downloading marine datasets. This package is designed for researchers and practitioners working with oceanographic data, offering easy access to products:
+
+[Global Ocean Physics Reanalysis](https://doi.org/10.48670/moi-00021)
+
+[Global Ocean Biogeochemistry Hindcast](https://doi.org/10.48670/moi-00019)
+
+Using `CopernicusDownloadR`, you can configure your environment, authenticate with the Copernicus Marine Service, and retrieve data based on custom parameters such as geographic location, depth, and temporal range.
+
+### Installation
+To install the development version of `CopernicusDownloadR`, ensure you have the `devtools` package installed. Then, run the following:
+
+```{r install-copernicus, eval=FALSE}
+# Install devtools if necessary
+install.packages("devtools")
+
+# Install CopernicusDownloadR
+devtools::install_github("elifrag/CopernicusDownloadR")
+```
+
+Once installed, load the package:
+
+```{r}
+library(CopernicusDownloadR)
+```
+
+### Setting Up the Environment
+
+The package requires Python to interface with the Copernicus Marine Service. Use the `setupCopernicusEnvironment` function to configure your Python environment and authenticate your Copernicus account.
+
+To get started, register for a free account with the Copernicus Marine Service:
+
+[Register Here](https://data.marine.copernicus.eu/register)
+
+
+Here’s an example setup:
+
+``` r
+# Authenticate and configure Python environment
+cm <- setupCopernicusEnvironment("your_username", "your_password")
+```
+
+The `cm` object returned will be used for subsequent data extraction functions.
+
+### Listing Available Variables and Datasets
+
+The `listVariables` function allows you to explore the variables and datasets available in the Copernicus Marine Service. You can request a complete list or just the names of the variables.
+
+``` r
+# List all variables with details
+listVariables(show = "completeList")
+
+# List only variable names
+listVariables()
+```
+
+This function helps you identify which variables and datasets suit your research needs.
+
+### Subsetting and Downloading Data
+
+The `extractData` function allows you to download environmental data based on your specifications. You can define variables, geographic ranges (longitude, latitude, depth), time intervals, and frequency (daily or monthly). You can also define the path to the downloaded data and metadata information file. Here's how:
+
+#### Example 1: Single Variable at a Point Location
+
+``` r
+# Download daily oxygen concentration for a specific location and time range
+copernicusData <- extractData(
+  cm = cm,
+  variables = "oxygen",
+  lon = -9.6467, lat = 36.7143,
+  startDate = "2021-01-01", endDate = "2021-01-20",
+  depth = c(10),
+  frequency = "daily",
+  data_output = "path_to_download_folder"
+)
+```
+
+#### Example 2: Multiple Variables, Broad Geographic Region and Multiple Depths
+
+``` r
+# Download monthly data for ocean temperature and oxygen over a region and multiple depths
+copernicusData <- extractData(
+  cm = cm,
+  variables = c("oceanTemperature", "oxygen"),
+  lon = c(-30, 10), lat = c(30, 45),
+  startDate = "2020-03-01", endDate = "2020-06-20",
+  depth = c(1, 30),
+  frequency = "monthly",
+  data_output = "path_to_download_folder"
+)
+```
+
+The extractData function automatically selects the appropriate dataset based on the requested variables and saves metadata information.
+
+
+### Visualizing and Transforming Downloaded Data
+
+Once you have downloaded data using `extractData`, you can visualize and manipulate it in R. Below are examples for importing, plotting, and saving NetCDF data, which may be single-band (e.g., one depth and time) or multi-band (e.g., multiple depths or times).
+
+#### Step 1: Load and Inspect a NetCDF File
+
+ Start by setting the path to your NetCDF file and inspecting its contents using the `ncdf4` package:
+
+``` r
+# Load the ncdf4 package
+library(ncdf4)
+
+# Set the path for the NetCDF file
+# Replace "path_to_data_folder" with the file path to your downloaded dataset
+ncfile <- "path_to_data_folder"
+
+# Open the NetCDF file
+nc <- nc_open(ncfile)
+
+# Print information about the NetCDF file
+print(nc)
+```
+
+This step allows you to examine the structure of the NetCDF file, including variables, dimensions (e.g., time, depth), and attributes.
+
+#### Step 2: Importing and Visualizing Single-Band NetCDF Files
+
+For single-band NetCDF files, you can load and visualize the data using the `terra` package:
+
+``` r
+# Load the terra package
+library(terra)
+
+# Import a single-band NetCDF file as a raster
+single <- rast(ncfile)
+
+# Print a summary of the raster
+print(single)
+
+# Plot the raster data
+plot(single, main = "Single-Band NetCDF Raster")
+```
+
+#### Step 3: Importing and Visualizing Multi-Band NetCDF Files
+
+For multi-band NetCDF files (e.g., multiple depths or times), you can also use the `rast` function:
+
+``` r
+# Import a multi-band NetCDF file
+multi <- rast(ncfile)
+
+# Print a summary of the multi-band raster
+print(multi)
+
+# Plot the first band (e.g., depth level or first time step)
+plot(multi[[1]], main = "Multi-Band NetCDF Raster: Band 1")
+```
+
+#### Step 4: Selecting and Visualizing Specific Time Steps
+
+To extract and visualize a specific time step from a multi-band NetCDF file:
+
+``` r
+# Select a specific time step (e.g., time step = 5)
+time_step <- multi[[5]]
+
+# Plot the selected time step
+plot(time_step, main = "Time Step 5")
+
+# Print a summary of the selected time step
+print(time_step)
+```
+
+#### Step 5: Exporting NetCDF Data to raster
+
+Save specific layers as GeoTIFF files:
+
+``` r
+# Save the selected raster layer as a GeoTIFF file
+writeRaster(time_step, filename = "oxygen_concentration_time5.tif", overwrite = TRUE)
+```
+
+### Author
+
+Eliza Fragkopoulou  
+<https://github.com/elifrag>
+### License
+
+This package is licensed under the MIT License. See the
+[LICENSE](LICENSE) file for more information.

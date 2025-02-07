@@ -1,0 +1,16 @@
+variable,variableNameCopernicus,metric,datasetName,dataset_id_monthly,dataset_id_daily,startDate,endDate,resolution,depths,doi
+oceanTemperature,thetao,C,GLOBAL_MULTIYEAR_ PHY_001_030,cmems_mod_glo_phy_my_0.083deg_P1M-m,cmems_mod_glo_phy_my_0.083deg_P1D-m,1993-01-01,2024-10-22,0.083,50,https://doi.org/10.48670/moi-00021
+mixedLayerDepth,mlotst,m,GLOBAL_MULTIYEAR_ PHY_001_030,cmems_mod_glo_phy_my_0.083deg_P1M-m,cmems_mod_glo_phy_my_0.083deg_P1D-m,1993-01-01,2024-10-22,0.083,50,https://doi.org/10.48670/moi-00021
+salinity,so,psu,GLOBAL_MULTIYEAR_ PHY_001_030,cmems_mod_glo_phy_my_0.083deg_P1M-m,cmems_mod_glo_phy_my_0.083deg_P1D-m,1993-01-01,2024-10-22,0.083,50,https://doi.org/10.48670/moi-00021
+seaIceCover,siconc,fraction,GLOBAL_MULTIYEAR_ PHY_001_030,cmems_mod_glo_phy_my_0.083deg_P1M-m,cmems_mod_glo_phy_my_0.083deg_P1D-m,1993-01-01,2024-10-22,0.083,50,https://doi.org/10.48670/moi-00021
+seaIceThickness,sithick,m,GLOBAL_MULTIYEAR_ PHY_001_030,cmems_mod_glo_phy_my_0.083deg_P1M-m,cmems_mod_glo_phy_my_0.083deg_P1D-m,1993-01-01,2024-10-22,0.083,50,https://doi.org/10.48670/moi-00021
+eastwardCurrentDirection,uo,m/s,GLOBAL_MULTIYEAR_ PHY_001_030,cmems_mod_glo_phy_my_0.083deg_P1M-m,cmems_mod_glo_phy_my_0.083deg_P1D-m,1993-01-01,2024-10-22,0.083,50,https://doi.org/10.48670/moi-00021
+northwardCurrentDirection,vo,m/s,GLOBAL_MULTIYEAR_ PHY_001_030,cmems_mod_glo_phy_my_0.083deg_P1M-m,cmems_mod_glo_phy_my_0.083deg_P1D-m,1993-01-01,2024-10-22,0.083,50,https://doi.org/10.48670/moi-00021
+chlorophyll-a,chl,mg/m3,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,cmems_mod_glo_bgc_my_0.25deg_P1D-m,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
+iron,fe,mmol/m3,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,NA,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
+oxygen,o2,mmol/m3,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,cmems_mod_glo_bgc_my_0.25deg_P1D-m,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
+nitrate,no3,mmol/m3,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,cmems_mod_glo_bgc_my_0.25deg_P1D-m,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
+pH,ph,NA,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,NA,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
+phosphate,po4,mmol/m3,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,cmems_mod_glo_bgc_my_0.25deg_P1D-m,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
+netPrimaryProduction,nppv,mg/m3*day,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,cmems_mod_glo_bgc_my_0.25deg_P1D-m,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
+silicate,si,mmol/m3,GLOBAL_MULTIYEAR_BGC_001_029,cmems_mod_glo_bgc_my_0.25deg_P1M-m,cmems_mod_glo_bgc_my_0.25deg_P1D-m,1993-01-01,2024-09-30,0.25,75,https://doi.org/10.48670/moi-00019
