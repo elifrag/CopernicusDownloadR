@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-### Introduction
+### Introduction 
 
 The `CopernicusDownloadR` package provides a seamless interface between R and the Copernicus Marine Service, simplifying the process of subsetting and downloading marine datasets. This package is designed for researchers and practitioners working with oceanographic data, offering easy access to products:
 
